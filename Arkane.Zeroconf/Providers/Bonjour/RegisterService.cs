@@ -34,11 +34,13 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
 
         public event RegisterServiceEventHandler Response ;
 
-        public void Register () { this.Register (true) ; }
+        public void Register () {
+            this.Register (true) ;
+        }
 
         public void Dispose ()
         {
-            this.task?.Wait () ;
+            //this.task?.Wait () ;
 
             this.sdRef.Deallocate () ;
         }

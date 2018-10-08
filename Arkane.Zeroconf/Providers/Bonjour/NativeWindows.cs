@@ -6,19 +6,22 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
 {
     internal static class NativeWindows
     {
-        [DllImport("dnssd.dll")]
+        const string dllName = "dnssd.dll";
+
+
+        [DllImport(dllName)]
         public static extern void DNSServiceRefDeallocate(IntPtr sdRef);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceProcessResult(IntPtr sdRef);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern int DNSServiceRefSockFD(IntPtr sdRef);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceCreateConnection(out ServiceRef sdRef);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceBrowse(out ServiceRef sdRef,
                                                             ServiceFlags flags,
                                                             uint interfaceIndex,
@@ -27,7 +30,7 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
                                                             DNSServiceBrowseReply callBack,
                                                             IntPtr context);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceResolve(out ServiceRef sdRef,
                                                              ServiceFlags flags,
                                                              uint interfaceIndex,
@@ -37,7 +40,7 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
                                                              DNSServiceResolveReply callBack,
                                                              IntPtr context);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceRegister(out ServiceRef sdRef,
                                                               ServiceFlags flags,
                                                               uint interfaceIndex,
@@ -51,7 +54,7 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
                                                               DNSServiceRegisterReply callBack,
                                                               IntPtr context);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError DNSServiceQueryRecord(out ServiceRef sdRef,
                                                                  ServiceFlags flags,
                                                                  uint interfaceIndex,
@@ -63,13 +66,13 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
 
         // TXT Record Handling
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern void TXTRecordCreate(IntPtr txtRecord, ushort bufferLen, IntPtr buffer);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern void TXTRecordDeallocate(IntPtr txtRecord);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError TXTRecordGetItemAtIndex(ushort txtLen,
                                                                    IntPtr txtRecord,
                                                                    ushort index,
@@ -78,22 +81,22 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
                                                                    out byte valueLen,
                                                                    out IntPtr value);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError TXTRecordSetValue(IntPtr txtRecord,
                                                              byte[] key,
                                                              sbyte valueSize,
                                                              byte[] value);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ServiceError TXTRecordRemoveValue(IntPtr txtRecord, byte[] key);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ushort TXTRecordGetLength(IntPtr txtRecord);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern IntPtr TXTRecordGetBytesPtr(IntPtr txtRecord);
 
-        [DllImport("dnssd.dll")]
+        [DllImport(dllName)]
         public static extern ushort TXTRecordGetCount(ushort txtLen, IntPtr txtRecord);
 
     }

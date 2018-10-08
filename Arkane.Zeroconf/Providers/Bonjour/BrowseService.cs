@@ -26,6 +26,14 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
             this.SetupCallbacks () ;
         }
 
+        IAsyncResult resolveResult = null;
+
+        ~BrowseService()
+        {
+            if(resolveResult != null)
+                this.resolveAction.EndInvoke(resolveResult);
+        }
+
         private Native.DNSServiceQueryRecordReply queryRecordReplyHandler ;
         private bool resolvePending ;
 
@@ -39,7 +47,7 @@ namespace ArkaneSystems.Arkane.Zeroconf.Providers.Bonjour
         {
             // If people call this in a ServiceAdded event handler (which they generally do), we need to
             // invoke onto another thread, otherwise we block processing any more results.
-            this.resolveAction.BeginInvoke (false, null, null) ;
+            resolveResult = this.resolveAction.BeginInvoke (false, null, null) ;
         }
 
         private void SetupCallbacks ()
